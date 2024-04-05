@@ -6,7 +6,7 @@
 /*   By: stak <stak@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 15:31:50 by stak              #+#    #+#             */
-/*   Updated: 2024/04/05 16:55:56 by stak             ###   ########.fr       */
+/*   Updated: 2024/04/05 17:32:19 by stak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ static void	set_target_a(t_list *a, t_list *b)
 		a = a->next;
 	}
 }
-
 
 static void	cost_analysis_a(t_list *a, t_list *b)
 {

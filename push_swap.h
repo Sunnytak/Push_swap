@@ -6,7 +6,7 @@
 /*   By: stak <stak@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 14:03:45 by stak              #+#    #+#             */
-/*   Updated: 2024/04/05 16:54:58 by stak             ###   ########.fr       */
+/*   Updated: 2024/04/05 17:31:05 by stak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,9 @@ void			init_nodes_a(t_list *a, t_list *b);
 static void		set_target_b(t_list *a, t_list *b);
 void			init_nodes_b(t_list *a, t_list *b);
 
+//sort_3
+void			sort_3(t_list **a);
+
 //stack_sort
 static void		append_node(t_list **stack, int n);
 void			init_stack_a(t_list **a, char **argv);
@@ -78,9 +81,9 @@ void			prep_for_push(t_list **stack, \
 //sort_stack
 static void		rotate_both(t_list **a, t_list **b, t_list *cheapest_node);
 static void		rev_rotate_both(t_list **a, t_list **b, t_list *cheapest_node);
-static void		move_a_to_b(t_list **a, t_list **b);
-static void		move_b_to_a(t_list **a, t_list **b);
-static void		min_on_top(t_list **a);
+void			move_a_to_b(t_list **a, t_list **b);
+void			move_b_to_a(t_list **a, t_list **b);
+void			min_on_top(t_list **a);
 
 //stack_utils
 t_list			*find_last(t_list *stack);

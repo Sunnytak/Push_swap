@@ -6,7 +6,7 @@
 /*   By: stak <stak@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 15:08:55 by stak              #+#    #+#             */
-/*   Updated: 2024/04/05 16:47:37 by stak             ###   ########.fr       */
+/*   Updated: 2024/04/05 17:18:02 by stak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	init_stack_a(t_list **a, char **argv)
 t_list	*get_cheapest(t_list *stack)
 {
 	if (!stack)
-		retrun (NULL);
+		return (NULL);
 	while (stack)
 	{
 		if (stack->cheapest)
@@ -84,7 +84,7 @@ void	sort_stacks(t_list **a, t_list **b)
 		init_nodes_a(*a, *b);
 		move_a_to_b(a, b);
 	}
-	sort_three(a);
+	sort_3(a);
 	while (*b)
 	{
 		init_nodes_b(*a, *b);

@@ -6,7 +6,7 @@
 #    By: stak <stak@student.hive.fi>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/04 12:10:01 by stak              #+#    #+#              #
-#    Updated: 2024/04/05 15:55:59 by stak             ###   ########.fr        #
+#    Updated: 2024/04/05 17:41:49 by stak             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,20 +15,21 @@ CC					= cc -g
 RM					= rm -f
 CFLAGS				= -Wall -Werror -Wextra
 
-SRC	=	push.c \
+SRC	=	ft_atoi.c \
+		handle_errors.c \
 		list_utils.c \
+		push.c \
 		reverse_rotate.c \
 		rotate.c \
-		sort_stacks.c \
 		sort_3.c \
-		swap.c \
-		handle_errors.c \
-		push_swap.c \
 		sort_a_to_b.c \
 		sort_b_to_a.c \
-		stack_sort.c \
-		stack_utils.c \
+		sort_stacks.c \
 		split.c \
+		stack_sort.c\
+		stack_utils.c \
+		swap.c
+		
 
 OBJ = ${SRC:.c=.o}
 

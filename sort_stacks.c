@@ -6,7 +6,7 @@
 /*   By: stak <stak@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 11:40:33 by stak              #+#    #+#             */
-/*   Updated: 2024/04/05 16:54:08 by stak             ###   ########.fr       */
+/*   Updated: 2024/04/05 17:25:13 by stak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	rev_rotate_both(t_list **a, t_list **b, t_list *cheapest_node)
 	current_index(*b);
 }
 
-static void	move_a_to_b(t_list **a, t_list **b)
+void	move_a_to_b(t_list **a, t_list **b)
 {
 	t_list	*cheapest_node;
 
@@ -46,12 +46,12 @@ static void	move_a_to_b(t_list **a, t_list **b)
 	pb(b, a);
 }
 
-static void	move_b_to_a(t_list **a, t_list **b)
+void	move_b_to_a(t_list **a, t_list **b)
 {
 	prep_for_push(a, (*b)->target_node, 'a');
 }
 
-static void	min_on_top(t_list **a)
+void	min_on_top(t_list **a)
 {
 	while ((*a)->content != lowest(a)->content)
 	{
