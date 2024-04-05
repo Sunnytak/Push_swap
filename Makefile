@@ -6,7 +6,7 @@
 #    By: stak <stak@student.hive.fi>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/04 12:10:01 by stak              #+#    #+#              #
-#    Updated: 2024/04/05 13:20:19 by stak             ###   ########.fr        #
+#    Updated: 2024/04/05 14:54:03 by stak             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,3 +49,4 @@ fclean: clean
 re: clean all
 
 .PHONY: all clean fclean re
+21222
