@@ -6,7 +6,7 @@
 /*   By: stak <stak@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 14:03:45 by stak              #+#    #+#             */
-/*   Updated: 2024/04/05 13:22:58 by stak             ###   ########.fr       */
+/*   Updated: 2024/04/05 16:15:47 by stak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_list
 	bool			above_median;
 	bool			cheapest;
 }					t_list;
+
 //split
 static int		wordcount(const char *s, char c);
 static char		*wordtoprint(const char **s, char c);
@@ -67,9 +68,13 @@ void			init_nodes_b(t_list *a, t_list *b);
 static void		append_node(t_list **stack, int n);
 void			init_stack_a(t_list **a, char **argv);
 t_list			*get_cheapest(t_list *stack);
+void			sort_stacks(t_list **a, t_list **b);
+void			prep_for_push(t_list **stack, t_list *top_node, char stack_name);
+
+// sort_stacks
+
 
 //stack_utils
-int				ft_lstsize(t_list *lst);
 t_list			*find_last(t_list *stack);
 bool			stack_sorted(t_list *stack);
 t_list			*lowest(t_list **stack);

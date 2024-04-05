@@ -6,7 +6,7 @@
 /*   By: stak <stak@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 11:57:50 by stak              #+#    #+#             */
-/*   Updated: 2024/04/04 14:38:41 by stak             ###   ########.fr       */
+/*   Updated: 2024/04/05 16:03:18 by stak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	sort_3(t_list **a)
 
 	max_node = highest(a);
 	if ((*a)->lst == max_node->lst)
-		rotate_ra(a);
+		ra(a);
 	else if ((*a)->next->lst == max_node->lst)
-		reverse_rotate_rra(a);
+		rra(a);
 	if ((*a)->lst > (*a)->next->lst)
-		swap_sa(a);
+		sa(a);
 }

@@ -6,7 +6,7 @@
 /*   By: stak <stak@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 11:40:33 by stak              #+#    #+#             */
-/*   Updated: 2024/04/05 13:19:16 by stak             ###   ########.fr       */
+/*   Updated: 2024/04/05 16:17:05 by stak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ static void	move_b_to_a(t_list **a, t_list **b)
 
 static void	min_on_top(t_list **a)
 {
-	while ((*a)->content != lowest(*a)->content)
+	while ((*a)->content != lowest(a)->content)
 	{
-		if (lowest(*a)->above_median)
+		if (lowest(a)->above_median)
 			ra(a);
 		else
 			rra(a);

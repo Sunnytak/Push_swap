@@ -6,26 +6,11 @@
 /*   By: stak <stak@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 11:06:04 by stak              #+#    #+#             */
-/*   Updated: 2024/04/04 11:49:16 by stak             ###   ########.fr       */
+/*   Updated: 2024/04/05 15:35:53 by stak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	ft_lstsize(t_list *lst)
-{
-	int	count;
-
-	count = 0;
-	if (lst == NULL)
-		return (0);
-	while (lst != NULL)
-	{
-		count++;
-		lst = lst -> next;
-	}
-	return (count);
-}
 
 t_list	*find_last(t_list *stack)
 {

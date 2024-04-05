@@ -6,7 +6,7 @@
 /*   By: stak <stak@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 15:08:55 by stak              #+#    #+#             */
-/*   Updated: 2024/04/04 12:27:59 by stak             ###   ########.fr       */
+/*   Updated: 2024/04/05 16:15:19 by stak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,25 @@ void	sort_stacks(t_list **a, t_list **b)
 	}
 	current_index(*a);
 	min_on_top(a);
+}
+
+void	prep_for_push(t_list **stack, t_list *top_node, char stack_name)
+{
+	while (*stack != top_node)
+	{
+		if (stack_name == 'a')
+		{
+			if (top_node->above_median)
+				ra(stack);
+			else
+				rra(stack);
+		}
+		else if (stack_name == 'b')
+		{
+			if (top_node->above_median)
+				rb(stack);
+			else
+				rrb(stack);
+		}
+	}
 }
