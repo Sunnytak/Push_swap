@@ -6,7 +6,7 @@
 /*   By: stak <stak@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:41:13 by stak              #+#    #+#             */
-/*   Updated: 2024/02/16 16:57:09 by stak             ###   ########.fr       */
+/*   Updated: 2024/04/05 16:28:33 by stak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	temp -> next = new;
 }
 
-int	ft_lstsize(t_list *lst)
+int	stack_len(t_list *lst)
 {
 	int	count;
 

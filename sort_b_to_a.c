@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_b_to_a.c                                      :+:      :+:    :+:   */
+/*   sort_b_to_a.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stak <stak@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 11:19:06 by stak              #+#    #+#             */
-/*   Updated: 2024/04/04 11:23:46 by stak             ###   ########.fr       */
+/*   Updated: 2024/04/05 16:42:43 by stak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	set_target_b(t_list *a, t_list *b)
 			current_a = current_a->next;
 		}
 		if (best_match_index == LONG_MAX)
-			b->target_node = lowest(a);
+			b->target_node = lowest(&a);
 		else
 			b->target_node = target_node;
 		b = b->next;

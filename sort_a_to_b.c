@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_a_to_b.c                                      :+:      :+:    :+:   */
+/*   sort_a_to_b.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stak <stak@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 15:31:50 by stak              #+#    #+#             */
-/*   Updated: 2024/04/04 11:43:01 by stak             ###   ########.fr       */
+/*   Updated: 2024/04/05 16:55:56 by stak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,34 @@ void	current_index(t_list *stack)
 // 		a = a->next;
 // 	}
 // }
+static void	set_target_a(t_list *a, t_list *b)
+{
+	t_list	*current_b;
+	t_list	*target_node;
+	long	best_match_index;
+
+	while (a)
+	{
+		best_match_index = LONG_MIN;
+		current_b = b;
+		while (current_b)
+		{
+			if (current_b->lst < a->lst
+				&& current_b->lst > best_match_index)
+			{
+				best_match_index = current_b->lst;
+				target_node = current_b;
+			}
+			current_b = current_b->next;
+		}
+		if (best_match_index == LONG_MIN)
+			a->target_node = highest(&b);
+		else
+			a->target_node = target_node;
+		a = a->next;
+	}
+}
+
 
 static void	cost_analysis_a(t_list *a, t_list *b)
 {

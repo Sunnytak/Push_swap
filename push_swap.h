@@ -6,7 +6,7 @@
 /*   By: stak <stak@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 14:03:45 by stak              #+#    #+#             */
-/*   Updated: 2024/04/05 16:15:47 by stak             ###   ########.fr       */
+/*   Updated: 2024/04/05 16:54:58 by stak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ typedef struct s_list
 	bool			above_median;
 	bool			cheapest;
 }					t_list;
+//atoi
+static int		check_overflow(long int i, long int check, long int sign);
+int				ft_atoi(const char *str);
 
 //split
 static int		wordcount(const char *s, char c);
@@ -50,7 +53,7 @@ void			free_errors(t_list **a);
 
 //list_utils
 void			ft_lstadd_back(t_list **lst, t_list *new);
-int				ft_lstsize(t_list *lst);
+int				stack_len(t_list *lst);
 void			ft_lstadd_front(t_list **lst, t_list *new);
 t_list			*ft_lstlast(t_list *lst);
 
@@ -69,10 +72,15 @@ static void		append_node(t_list **stack, int n);
 void			init_stack_a(t_list **a, char **argv);
 t_list			*get_cheapest(t_list *stack);
 void			sort_stacks(t_list **a, t_list **b);
-void			prep_for_push(t_list **stack, t_list *top_node, char stack_name);
+void			prep_for_push(t_list **stack, \
+				t_list *top_node, char stack_name);
 
-// sort_stacks
-
+//sort_stack
+static void		rotate_both(t_list **a, t_list **b, t_list *cheapest_node);
+static void		rev_rotate_both(t_list **a, t_list **b, t_list *cheapest_node);
+static void		move_a_to_b(t_list **a, t_list **b);
+static void		move_b_to_a(t_list **a, t_list **b);
+static void		min_on_top(t_list **a);
 
 //stack_utils
 t_list			*find_last(t_list *stack);

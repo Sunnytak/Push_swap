@@ -6,7 +6,7 @@
 /*   By: stak <stak@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 15:08:55 by stak              #+#    #+#             */
-/*   Updated: 2024/04/05 16:15:19 by stak             ###   ########.fr       */
+/*   Updated: 2024/04/05 16:47:37 by stak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ void	init_stack_a(t_list **a, char **argv)
 	while (argv[i])
 	{
 		if (error_syntax(argv[i]))
-			free_error (a);
+			free_errors(a);
 		n = ft_atoi(argv[i]);
 		if (n > INT_MAX || n < INT_MIN)
 			free_errors(a);
-		if (erro_duplicate(*a, (int)n))
+		if (error_duplicate(*a, (int)n))
 			free_errors(a);
 		append_node(a, (int)n);
 		i++;

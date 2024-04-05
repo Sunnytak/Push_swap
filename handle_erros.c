@@ -6,7 +6,7 @@
 /*   By: stak <stak@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 12:07:33 by stak              #+#    #+#             */
-/*   Updated: 2024/03/26 12:12:33 by stak             ###   ########.fr       */
+/*   Updated: 2024/04/05 16:47:41 by stak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,6 @@ void	free_stack(t_list **stack)
 void	free_errors(t_list **a)
 {
 	free_stack(a);
-	ft_printf("Error\n");
+	write (1, "Error\n", 6);
 	exit(1);
 }
