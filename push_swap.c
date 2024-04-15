@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: stak <stak@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/04 11:13:32 by stak              #+#    #+#             */
-/*   Updated: 2024/04/04 12:29:39 by stak             ###   ########.fr       */
+/*   Created: 2024/04/15 12:14:13 by stak              #+#    #+#             */
+/*   Updated: 2024/04/15 12:14:19 by stak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,89 @@
 
 int	main(int argc, char **argv)
 {
-	t_list	*a;
-	t_list	*b;
+	t_node	*stack_a;
+	t_node	*stack_b;
 
-	a = NULL;
-	b = NULL;
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
+	stack_a = NULL;
+	stack_b = NULL;
+	if (argc == 1)
 		return (1);
-	else if (argc == 2)
-		init_stack_a(&a, argv + 1);
-	if (!stack_sorted(a))
+	if (argc > 1)
 	{
-		if (stack_len(a) == 2)
-			sa(&a);
-		else if (stack_len(a) == 3)
-			sort_3(&a);
-		else
-			sort_stacks(&a, &b);
+		put_in_stack(argc, argv, &stack_a);
+		check_duplicate(stack_a);
+		assign_index(stack_a);
+		if (!is_sorted(stack_a))
+		{
+			if (lst_length(stack_a) <= 5)
+				small_sort(&stack_a, &stack_b);
+			else
+				big_sort(&stack_a, &stack_b);
+		}
+		free_stack(&stack_a);
+		free_stack(&stack_b);
 	}
-	free_stack(&a);
 	return (0);
+}
+
+int	put_in_stack(int argc, char **argv, t_node **a_stack)
+{
+	int		i;
+	int		j;
+	char	**array;
+	int		input;
+
+	i = 1;
+	while (i < argc)
+	{
+		array = ft_split(argv[i], ' ');
+		j = 0;
+		if (!(array[j] || !array))
+		{
+			write (2, "Error\n", 6);
+			exit (1);
+		}
+		while (array[j])
+		{
+			input = error_check(array[j]);
+			ft_lstadd_back_mod(a_stack, ft_lstnew_mod(input));
+			j++;
+		}
+		free_array(array);
+		i++;
+	}
+	return (0);
+}
+
+void	big_sort(t_node **stack_a, t_node **stack_b)
+{
+	push_to_b(stack_a, stack_b);
+	sort_3(stack_a);
+	while (*stack_b)
+	{
+		push_to_a(stack_a, stack_b);
+	}
+	if (!is_sorted(*stack_a))
+	{
+		get_position(*stack_a);
+		get_min_on_top(stack_a);
+	}
+}
+
+void	get_min_on_top(t_node **stack)
+{
+	int		middle;
+	t_node	*lowest_node;
+
+	middle = lst_length(*stack) / 2;
+	lowest_node = find_min_node(*stack);
+	if (!stack || !*stack)
+		return ;
+	while (*stack != lowest_node)
+	{
+		if (lowest_node->position < middle)
+			ra(stack);
+		else
+			rra(stack);
+	}
 }

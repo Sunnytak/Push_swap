@@ -1,42 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stak <stak@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/15 12:15:43 by stak              #+#    #+#             */
-/*   Updated: 2024/04/15 12:15:45 by stak             ###   ########.fr       */
+/*   Created: 2024/04/15 12:13:32 by stak              #+#    #+#             */
+/*   Updated: 2024/04/15 12:13:37 by stak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push(t_node **src, t_node **dest)
+void	free_stack(t_node **stack)
 {
 	t_node	*temp;
+	t_node	*current;
 
-	if (*src == NULL)
+	current = *stack;
+	if (!stack)
 		return ;
-	temp = *src;
-	*src = temp->next;
-	if (*src != NULL)
-		(*src)->prev = NULL;
-	if (*dest != NULL)
-		(*dest)->prev = temp;
-	temp->next = *dest;
-	temp->prev = NULL;
-	*dest = temp;
+	while (current)
+	{
+		temp = current->next;
+		free(current);
+		current = temp;
+	}
+	*stack = NULL;
 }
 
-void	pa(t_node **a_stack, t_node **b_stack)
+void	free_array(char **array)
 {
-	push(b_stack, a_stack);
-	write(1, "pa\n", 3);
+	int	i;
+
+	i = 0;
+	while (array[i])
+	{
+		if (array[i] != NULL)
+		{
+			free(array[i]);
+			array[i] = NULL;
+			i++;
+		}
+	}
+	if (array != NULL)
+	{
+		free(array);
+		array = NULL;
+	}
 }
 
-void	pb(t_node **a_stack, t_node **b_stack)
+int	exit_error(void)
 {
-	push(a_stack, b_stack);
-	write(1, "pb\n", 3);
+	write(2, "Error\n", 6);
+	return (1);
 }

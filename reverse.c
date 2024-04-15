@@ -1,42 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   reverse.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stak <stak@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/15 12:15:43 by stak              #+#    #+#             */
-/*   Updated: 2024/04/15 12:15:45 by stak             ###   ########.fr       */
+/*   Created: 2024/04/15 12:15:56 by stak              #+#    #+#             */
+/*   Updated: 2024/04/15 12:15:57 by stak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push(t_node **src, t_node **dest)
+void	reverse(t_node **stack)
 {
 	t_node	*temp;
 
-	if (*src == NULL)
+	if (!(*stack) || !(*stack)->next)
 		return ;
-	temp = *src;
-	*src = temp->next;
-	if (*src != NULL)
-		(*src)->prev = NULL;
-	if (*dest != NULL)
-		(*dest)->prev = temp;
-	temp->next = *dest;
+	temp = ft_lstlast(*stack);
+	temp->prev->next = NULL;
 	temp->prev = NULL;
-	*dest = temp;
+	temp->next = *stack;
+	(*stack)->prev = temp;
+	*stack = (*stack)->prev;
 }
 
-void	pa(t_node **a_stack, t_node **b_stack)
+void	rra(t_node **stack)
 {
-	push(b_stack, a_stack);
-	write(1, "pa\n", 3);
+	reverse(stack);
+	write(1, "rra\n", 4);
 }
 
-void	pb(t_node **a_stack, t_node **b_stack)
+void	rrb(t_node **stack)
 {
-	push(a_stack, b_stack);
-	write(1, "pb\n", 3);
+	reverse(stack);
+	write(1, "rrb\n", 4);
+}
+
+void	rrr(t_node **a_stack, t_node **b_stack)
+{
+	reverse(a_stack);
+	reverse(b_stack);
+	write(1, "rrr\n", 4);
 }

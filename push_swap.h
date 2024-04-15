@@ -5,109 +5,101 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: stak <stak@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/09 14:03:45 by stak              #+#    #+#             */
-/*   Updated: 2024/04/05 17:31:05 by stak             ###   ########.fr       */
+/*   Created: 2024/04/15 12:15:36 by stak              #+#    #+#             */
+/*   Updated: 2024/04/15 12:15:38 by stak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdbool.h>
-# include <limits.h>
-# include <unistd.h>
 # include <stdlib.h>
+# include <unistd.h>
+# include <limits.h>
 
-typedef struct s_list
+typedef struct s_node
 {
-	int				lst;
-	int				new;
-	long int		content;
-	struct s_list	*target_node;
-	struct s_list	*next;
-	struct s_list	*prev;
-	bool			above_median;
-	bool			cheapest;
-}					t_list;
-//atoi
-static int		check_overflow(long int i, long int check, long int sign);
-int				ft_atoi(const char *str);
+	int				index;
+	int				content;
+	int				position;
+	int				push_cost;
+	struct s_node	*target_node;
+	struct s_node	*next;
+	struct s_node	*prev;
+}	t_node;
 
-//split
-static int		wordcount(const char *s, char c);
-static char		*wordtoprint(const char **s, char c);
-static void		free_all(int i, char **ptr);
-char			**ft_split(char const *s, char c);
+///////////// manipulate lists //////////////
 
-//split_utils
-// char			*ft_substr(char const *s, unsigned int start, size_t len);
-// char			*ft_strdup(const char *s1);
-// void			*ft_memcpy(void *dst, const void *src, size_t n);
-// size_t			ft_strlen(const char *s);
+void	ft_lstadd_back_mod(t_node **lst, t_node *new);
+void	ft_lstadd_front_mod(t_node **lst, t_node *new);
+t_node	*ft_lstlast(t_node *lst);
+t_node	*ft_lstnew_mod(int content);
+long	lst_length(t_node *stack);
 
-//handle_errors
-int				error_syntax(char *str_n);
-int				error_duplicate(t_list *a, int n);
-void			free_stack(t_list **stack);
-void			free_errors(t_list **a);
+////////////////// operations ////////////////
 
-//list_utils
-void			ft_lstadd_back(t_list **lst, t_list *new);
-int				stack_len(t_list *lst);
-void			ft_lstadd_front(t_list **lst, t_list *new);
-t_list			*ft_lstlast(t_list *lst);
+void	reverse(t_node **stack);
+void	rra(t_node **stack);
+void	rrb(t_node **stack);
+void	rrr(t_node **a_stack, t_node **b_stack);
+void	rotate(t_node **stack);
+void	ra(t_node **stack);
+void	rb(t_node **stack);
+void	rr(t_node **a_stack, t_node **b_stack);
+void	swap(t_node **stack);
+void	sa(t_node **stack);
+void	sb(t_node **stack);
+void	ss(t_node **a_stack, t_node **b_stack);
+void	push(t_node **src, t_node **dest);
+void	pb(t_node **a_stack, t_node **b_stack);
+void	pa(t_node **a_stack, t_node **b_stack);
 
-//sort_a_to_b
-void			current_index(t_list *stack);
-static void		cost_analysis_a(t_list *a, t_list *b);
-void			set_cheapest(t_list *stack);
-void			init_nodes_a(t_list *a, t_list *b);
+/////////////// helper functions ////////////////
 
-//sort_b_to_a
-static void		set_target_b(t_list *a, t_list *b);
-void			init_nodes_b(t_list *a, t_list *b);
+long	ft_atol(const char *str);
+char	**ft_split(char const *s, char c);
+t_node	*find_max_node(t_node *stack);
+t_node	*find_min_node(t_node *stack);
+void	assign_index(t_node *stack);
+void	get_position(t_node *stack);
+int		find_highest_index(t_node *stack);
+int		find_lowest_index(t_node *stack);
+int		ft_isdigit(int arg);
 
-//sort_3
-void			sort_3(t_list **a);
+////////////// assign input to list //////////////
 
-//stack_sort
-static void		append_node(t_list **stack, int n);
-void			init_stack_a(t_list **a, char **argv);
-t_list			*get_cheapest(t_list *stack);
-void			sort_stacks(t_list **a, t_list **b);
-void			prep_for_push(t_list **stack, \
-				t_list *top_node, char stack_name);
+int		error_check(char *str);
+int		check_duplicate(t_node *stack);
+int		put_in_stack(int argc, char **argv, t_node **a_stack);
 
-//sort_stack
-static void		rotate_both(t_list **a, t_list **b, t_list *cheapest_node);
-static void		rev_rotate_both(t_list **a, t_list **b, t_list *cheapest_node);
-void			move_a_to_b(t_list **a, t_list **b);
-void			move_b_to_a(t_list **a, t_list **b);
-void			min_on_top(t_list **a);
+void	push_to_b(t_node **stack_a, t_node **stack_b);
+void	target_for_b(t_node *stack_a, t_node *stack_b);
+void	prepare_to_push_b(t_node *stack_a, t_node *stack_b);
+void	push_to_a(t_node **stack_a, t_node **stack_b);
+void	do_rb_rra(t_node **stack_a, t_node **stack_b, t_node *cheapest_node);
+void	do_ra_rrb(t_node **stack_a, t_node **stack_b, t_node *cheapest_node);
+void	do_rr_ra_rb(t_node **stack_a, t_node **stack_b, t_node *cheapest_node);
+void	do_rrr(t_node **stack_a, t_node **stack_b, t_node *cheapest_node);
 
-//stack_utils
-t_list			*find_last(t_list *stack);
-bool			stack_sorted(t_list *stack);
-t_list			*lowest(t_list **stack);
-t_list			*highest(t_list **stack);
+/////////////////// cost /////////////////////
 
-//swap
-void			sa(t_list **a);
-void			sb(t_list **b);
-void			ss(t_list **a, t_list **b);
+t_node	*find_cheapest(t_node *stack);
+void	calculate_cost(t_node *stack_a, t_node *stack_b);
+void	initialize_positions(t_node *stack, int *position_a, int *position_b);
+void	calculate_push_cost(t_node *a, t_node *b, int len_a, int len_b);
 
-//rotate
-void			ra(t_list **a);
-void			rb(t_list **b);
-void			rr(t_list **a, t_list **b);
+////////////////// sort ////////////////////
 
-//push
-void			pa(t_list **a, t_list **b);
-void			pb(t_list **a, t_list **b);
+void	sort_3(t_node **stack);
+void	sort_4(t_node **stack_a, t_node **stack_b);
+void	sort_5(t_node **stack_a, t_node **stack_b);
+void	small_sort(t_node **stack_a, t_node **stack_b);
+void	big_sort(t_node **stack_a, t_node **stack_b);
+int		is_sorted(t_node *stack);
+void	get_min_on_top(t_node **stack);
 
-//reverse
-void			rra(t_list **a);
-void			rrb(t_list **b);
-void			rrr(t_list **a, t_list **b);
+void	free_stack(t_node **stack);
+void	free_array(char **array);
+int		exit_error(void);
 
 #endif
